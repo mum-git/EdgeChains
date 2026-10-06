@@ -56,7 +56,7 @@ curl "http://localhost:3000/chatWithQdrant?question=How%20does%20EdgeChains%20st
 curl "http://localhost:3000/health"
 ```
 
-On startup the example creates a `documents` collection (8-d local embeddings so it runs
+On startup the example creates a `documents` collection (32-d local embeddings so it runs
 without OpenAI) and upserts three sample passages. Production apps should swap
 `localEmbed` for OpenAI embeddings and create the collection with `vectorSize: 1536`.
 

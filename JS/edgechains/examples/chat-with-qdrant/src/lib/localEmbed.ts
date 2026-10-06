@@ -2,7 +2,7 @@
  * Tiny bag-of-words embedding so the example can run without OpenAI.
  * Swap in OpenAI embeddings (vector size 1536) for production.
  */
-export function localEmbed(text: string, size = 8): number[] {
+export function localEmbed(text: string, size = 32): number[] {
     const vec = new Array(size).fill(0);
     const tokens = String(text).toLowerCase().split(/\W+/).filter(Boolean);
     for (const token of tokens) {

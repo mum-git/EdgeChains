@@ -3,8 +3,11 @@
  */
 import http from "http";
 import { AddressInfo } from "net";
-import { Qdrant, QdrantDistanceMetric } from "../../lib/qdrant/qdrant";
-import { QdrantClient } from "../../lib/qdrant/QdrantClient";
+import {
+    Qdrant,
+    QdrantDistanceMetric,
+} from "../../../../../dist/vector-db/src/lib/qdrant/qdrant.js";
+import { QdrantClient } from "../../../../../dist/vector-db/src/lib/qdrant/QdrantClient.js";
 
 jest.unmock("axios");
 

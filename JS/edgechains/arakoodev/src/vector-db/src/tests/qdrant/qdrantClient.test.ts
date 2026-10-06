@@ -2,8 +2,8 @@
  * @jest-environment node
  */
 import axios from "axios";
-import { QdrantClient } from "../../lib/qdrant/QdrantClient";
-import { QdrantDistanceMetric } from "../../lib/qdrant/qdrant";
+import { QdrantClient } from "../../../../../dist/vector-db/src/lib/qdrant/QdrantClient.js";
+import { QdrantDistanceMetric } from "../../../../../dist/vector-db/src/lib/qdrant/qdrant.js";
 
 jest.mock("axios");
 

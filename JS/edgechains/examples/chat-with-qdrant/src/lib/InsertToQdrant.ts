@@ -22,7 +22,7 @@ export const SAMPLE_DOCS = [
     },
 ];
 
-export const VECTOR_SIZE = 8;
+export const VECTOR_SIZE = 32;
 export const COLLECTION_NAME = "documents";
 export const NAMESPACE = "edgechains-docs";
 

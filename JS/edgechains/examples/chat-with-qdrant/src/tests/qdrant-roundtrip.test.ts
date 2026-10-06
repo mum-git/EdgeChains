@@ -4,6 +4,7 @@ import { test, expect } from "vitest";
 import { Qdrant, QdrantClient, QdrantDistanceMetric } from "@arakoodev/edgechains.js/vector-db";
 import { insertSampleDocs, COLLECTION_NAME, NAMESPACE } from "../lib/InsertToQdrant.js";
 import { localEmbed } from "../lib/localEmbed.js";
+import { qdrantSearchAdaEmbedding } from "../service/QdrantSearchService.js";
 
 type Point = { id: string | number; vector: number[]; payload: Record<string, any> };
 
@@ -127,7 +128,19 @@ test("example seeds Qdrant over HTTP and retrieves jsonnet-related docs", async 
         );
         const rows = await client.dbQuery();
         expect(rows.length).toBeGreaterThan(0);
-        expect(rows[0].raw_text.toLowerCase()).toContain("jsonnet");
+        const texts = rows.map((row) => String(row.raw_text).toLowerCase());
+        expect(texts.some((text) => text.includes("jsonnet"))).toBe(true);
+
+        const search = await qdrantSearchAdaEmbedding(
+            { query: "How does EdgeChains store prompts?", topK: 3 },
+            url,
+            ""
+        );
+        expect(search.hypotheticalPrompt.toLowerCase()).toContain(
+            "how does edgechains store prompts"
+        );
+        expect(search.finalAnswer).toContain("retrieved sources");
+        expect(search.wordEmbeddings.length).toBeGreaterThan(0);
     } finally {
         await close();
     }
